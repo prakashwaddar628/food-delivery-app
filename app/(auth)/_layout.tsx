@@ -3,14 +3,13 @@ import CustomInput from "@/components/CustomInput";
 import { images } from "@/constants";
 import { Slot } from "expo-router";
 import {
-  Text,
+  Dimensions,
+  Image,
+  ImageBackground,
   KeyboardAvoidingView,
   Platform,
   ScrollView,
-  View,
-  Dimensions,
-  ImageBackground,
-  Image,
+  View
 } from "react-native";
 
 export default function _layout() {
@@ -31,7 +30,13 @@ export default function _layout() {
           <Image source={images.logo}
           className="size-48 absolute -bottom-16 z-10 self-center"/>
         </View>
-        <CustomInput />
+        <CustomInput
+        placeholder="enter your username (@email.com)"
+        label="Username"
+        keyboardType="email-address"
+        value=""
+        onChangeText={(text) => {}}
+        />
         <CustomButton />
       </ScrollView>
       <Slot />
