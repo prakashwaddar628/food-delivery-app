@@ -2,7 +2,7 @@ import CustomButton from "@/components/CustomButton";
 import CustomInput from "@/components/CustomInput";
 import { router, Link } from "expo-router";
 import { useState } from "react";
-import { View, Text } from "react-native";
+import { View, Text, Alert } from "react-native";
 
 export default function SignIn() {
   const [isSubmitting, setIsSubmitting] = useState(false);
@@ -17,17 +17,17 @@ export default function SignIn() {
 
     try{
       // call appwrite sign in function
-      alert("Sign in successful");
+      Alert.alert("Success", "Sign in successful");
       router.replace("/");
     }catch(error){
-      alert("Sign in failed");
+      Alert.alert("Error", "Sign in failed");
     }finally{
       setIsSubmitting(false);
     }
   }
 
   return (
-    <View className="gap-10 bg-white rounded-lg p-5 mt-5">
+    <View className="gap-5 bg-white rounded-lg p-5 mt-5">
       <CustomInput
         placeholder="enter your username (@email.com)"
         label="Username"

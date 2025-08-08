@@ -2,7 +2,7 @@ import CustomButton from "@/components/CustomButton";
 import CustomInput from "@/components/CustomInput";
 import { router, Link } from "expo-router";
 import { useState } from "react";
-import { View, Text } from "react-native";
+import { View, Text, Alert } from "react-native";
 
 export default function SignUp() {
   const [isSubmitting, setIsSubmitting] = useState(false);
@@ -16,19 +16,19 @@ export default function SignUp() {
     setIsSubmitting(true);
 
     try{
-      // call appwrite sign in function
-      
-      alert("Sign Up successful");
+      // call appwrite sign-up function
+
+      Alert.alert("Success", "Sign Up successful");
       router.replace("/");
     }catch(error){
-      alert("Sign Up failed");
+      Alert.alert("Error", "Sign Up failed");
     }finally{
       setIsSubmitting(false);
     }
   }
 
   return (
-    <View className="gap-10 bg-white rounded-lg p-5 mt-5">
+    <View className="gap-5 bg-white rounded-lg p-5 mt-3">
       <CustomInput
         placeholder="enter your name"
         label="Name"
@@ -51,10 +51,10 @@ export default function SignUp() {
         value={form.password}
         onChangeText={(text) => setForm((prev) => ({ ...prev, password: text }))}
       />
-      <CustomButton isLoading={isSubmitting} title="Sign In" onPress={() => submit()} />
+      <CustomButton isLoading={isSubmitting} title="Sign Up" onPress={() => submit()} />
       <View className="flex justify-center flex-row gap-2">
         <Text className="base-regular text-gray-100">
-          already have an account?{" "}
+          Already have an account?{" "}
           <Link className="base-bold text-primary" href="/signin">
             Sign In
           </Link>
