@@ -5,7 +5,7 @@ export const appwriteConfig = {
   endpoint: process.env.EXPO_PUBLIC_APPWRITE_ENDPOINT!,
   projectId: process.env.EXPO_PUBLIC_APPWRITE_PROJECT_ID!,
   platform: process.env.PLATFORM!,
-  databaseId: process.env.DATABASE_ID!,
+  databaseId: "688e094100121b10ae9f",
   usersCollections: process.env.USER_COLLECTIONS!,
 };
 
@@ -53,9 +53,6 @@ export const createUser = async ({
 export const signIn = async ({ email, password }: SignInParams) => {
   try {
     const session = await account.createEmailPasswordSession(email, password);
-    if (!session) {
-      throw new Error("Sign in failed");
-    }
     return session;
   } catch (error) {
     console.error("Error signing in:", error);
