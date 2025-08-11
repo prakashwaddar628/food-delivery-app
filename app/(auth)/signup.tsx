@@ -20,7 +20,7 @@ export default function SignUp() {
     try {
       await createUser({ email, password, name });
       
-      router.replace("/");
+      router.replace("/signin");
     } catch (error) {
       Alert.alert("Error", "Sign Up failed");
     } finally {
@@ -57,7 +57,7 @@ export default function SignUp() {
       <CustomButton
         isLoading={isSubmitting}
         title="Sign Up"
-        onPress={() => submit()}
+        onPress={submit}
       />
       <View className="flex justify-center flex-row gap-2">
         <Text className="base-regular text-gray-100">

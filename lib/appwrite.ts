@@ -4,9 +4,9 @@ import { Account, Avatars, Client, Databases, ID } from "react-native-appwrite";
 export const appwriteConfig = {
   endpoint: process.env.EXPO_PUBLIC_APPWRITE_ENDPOINT!,
   projectId: process.env.EXPO_PUBLIC_APPWRITE_PROJECT_ID!,
-  platform: process.env.PLATFORM!,
+  platform: "com.pw.foodordering",
   databaseId: "688e094100121b10ae9f",
-  usersCollections: process.env.USER_COLLECTIONS!,
+  usersCollections: "688e09b00010b1b183a8",
 };
 
 export const client = new Client();
@@ -41,7 +41,7 @@ export const createUser = async ({
       appwriteConfig.databaseId,
       appwriteConfig.usersCollections,
       ID.unique(),
-      { email, name, accountId: newAccount.$id, avatar: avatarUrl }
+      { email, name, accountID: newAccount.$id, avatar: avatarUrl }
     );
 
   } catch (error) {
