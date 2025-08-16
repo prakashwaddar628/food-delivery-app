@@ -1,4 +1,4 @@
-import { CreateUserPrams, SignInParams } from "@/type";
+import { CreateUserPrams, SignInParams, User } from "@/type";
 import { Account, Avatars, Client, Databases, ID, Query } from "react-native-appwrite";
 
 export const appwriteConfig = {
@@ -67,7 +67,7 @@ export const getCurrentUser = async () => {
     if (!currentAccount) {
       throw new Error("User not found");
     }
-    const currentUser = await databases.listDocuments(
+    const currentUser = await databases.listDocuments<User>(
       appwriteConfig.databaseId,
       appwriteConfig.usersCollections,
       [Query.equal("accountID", currentAccount.$id)],
@@ -76,6 +76,8 @@ export const getCurrentUser = async () => {
     if (!currentUser) {
       throw new Error("User not found");
     }
+
+    if (!currentUser.documents.length) return null;
 
     return currentUser.documents[0];
   } catch (error) {
