@@ -85,14 +85,6 @@ export default function Index() {
             <CartButton />
           </View>
         )}
-        ListFooterComponent={() => {
-          return (
-            <Button
-              title='Try!'
-              onPress={()=> Sentry.captureException(new Error('Test error'))}
-            />
-          );
-        }}
       />
     </SafeAreaView>
   );

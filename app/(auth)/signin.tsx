@@ -4,6 +4,7 @@ import { signIn } from "@/lib/appwrite";
 import { router, Link } from "expo-router";
 import { useState } from "react";
 import { View, Text, Alert } from "react-native";
+import * as Sentry from "@sentry/react-native";
 
 export default function SignIn() {
   const [isSubmitting, setIsSubmitting] = useState(false);
@@ -21,8 +22,9 @@ export default function SignIn() {
       await signIn({ email, password });
 
       router.replace("/");
-    } catch (error) {
+    } catch (error: any) {
       Alert.alert("Error", "Sign in failed");
+      Sentry.captureEvent(error);
     } finally {
       setIsSubmitting(false);
     }
