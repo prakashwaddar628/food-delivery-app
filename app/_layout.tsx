@@ -3,6 +3,7 @@ import "./globals.css";
 import { useFonts } from "expo-font";
 import { useEffect } from "react";
 import * as Sentry from '@sentry/react-native';
+import useAuthStore from "@/store/auth.store";
 
 Sentry.init({
   dsn: 'https://1a0e5634f62653a9384c1511f9c4ae9c@o4509831270891520.ingest.us.sentry.io/4509831301431296',
@@ -21,6 +22,8 @@ Sentry.init({
 });
 
 export default Sentry.wrap(function RootLayout() {
+  const {isLoading, fetchAuthenticatedUser} = useAuthStore();
+
   const [fontsLoaded, error] = useFonts({
     "QuickSand-Bold": require("../assets/fonts/Quicksand-Bold.ttf"),
     "QuickSand-Medium": require("../assets/fonts/Quicksand-Medium.ttf"),
